@@ -5,9 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ssr_spa_navigation.Infrastructure;
+using ssr_spa_navigation.Infrastructure.Repositories;
 
 namespace ssr_spa_navigation
 {
@@ -30,6 +34,10 @@ namespace ssr_spa_navigation
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddScoped<IContentRepository, ContentRepository>();
+            services.AddScoped<DefaultStructureResult>();
+            services.AddScoped<NoSidebarStructureResult>();
+            services.AddScoped<LiveStoiximaStructureResult>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -44,17 +52,50 @@ namespace ssr_spa_navigation
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
             }
 
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+
+                MapRoutes(routes, name: "default_details",
+                    template: "{controller=Home}/{ignoreme}-{id}",
+                    defaults: new { action = "Details" },
+                    constraints: new { id = @"\d+" });
+
+                MapRoutes(routes, name: "league_details",
+                    template: "{controller}/{ignore}-{sport:alpha}/{ignoreme}-{id}",
+                    defaults: new { action = "Details" },
+                    constraints: new { controller = "League", id = @"\d+" });
+
+                MapRoutes(routes, name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}",
+                    defaults: null,
+                    constraints: null);
+
             });
+        }
+
+        public static IRouteBuilder MapRoutes(IRouteBuilder routes, string name, string template, object defaults,
+            object constraints)
+        {
+            routes.MapRoute(
+                name: name + "_api",
+                template: "api/" + template,
+                defaults: defaults,
+                constraints: constraints,
+                dataTokens: new { Name = "default_api" });
+
+            routes.MapRoute(
+                name: name,
+                template: template,
+                defaults: defaults,
+                constraints: constraints);
+            return routes;
         }
     }
 }
