@@ -128,7 +128,7 @@ namespace ssr_spa_navigation.Infrastructure
             StuctureRequirement headerRequirement = new StuctureRequirement();
             headerRequirement.StoreProperty = "header";
             headerRequirement.Alias = "h";
-            headerRequirement.function = (x) => contentRepository.GetHeaderContent("Stoiximan.gr");
+            headerRequirement.function = (x) => contentRepository.GetHeaderContent("Sports Betting");
 
             StuctureRequirement footerRequirement = new StuctureRequirement();
             footerRequirement.StoreProperty = "footer";
@@ -153,7 +153,7 @@ namespace ssr_spa_navigation.Infrastructure
             StuctureRequirement headerRequirement = new StuctureRequirement();
             headerRequirement.StoreProperty = "header";
             headerRequirement.Alias = "h";
-            headerRequirement.function = (x) => contentRepository.GetHeaderContent("Stoiximan.gr");
+            headerRequirement.function = (x) => contentRepository.GetHeaderContent("Sports Betting");
 
             StuctureRequirement footerRequirement = new StuctureRequirement();
             footerRequirement.StoreProperty = "footer";

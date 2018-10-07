@@ -48,12 +48,12 @@ namespace ssr_spa_navigation.Infrastructure.Repositories
         {
             return new List<Offer>()
             {
-                new Offer() { Title = "0% Margin*", Image = "https://cov.gambling-malta.com/cov/im/images_offer_334x209_gkaniota_b.jpg", Name = "0-ganiota-1234"},
-                new Offer() { Title = "Acca Bonus*", Image = "https://cov.gambling-malta.com/cov/im/images_offer_334x209_prim_paroli_b.jpg", Name = "prim-sto-paroli-3235"},
-                new Offer() { Title = "Acca Insurance*", Image = "https://cov.gambling-malta.com/cov/im/images_offer_334x209_paroligo_b.jpg", Name = "paroligo-322"},
-                new Offer() { Title = "Request a Bet*",  Image = "https://cov.gambling-malta.com/cov/im/images_offer_334x209_pes_to_ki_egine_b.jpg", Name = "pesto-ki-egine-1134" },
-                new Offer() { Title = "2 Goals Up*", Image = "https://cov.gambling-malta.com/cov/of/offerssectionstoiximan-2kaitamio-334x209_b.jpg", Name = "duo-kai-tameio-3884"},
-                new Offer() { Title = "Bore Draw Refund*", Image = "https://cov.gambling-malta.com/cov/im/images_offer_334x209_leuki_epistrofi_b.jpg", Name = "leukh-epistrofi-9382" }
+                new Offer() { Title = "0% Margin*", Image = "zero-margin.png", Name = "0-ganiota-1234"},
+                new Offer() { Title = "Acca Bonus*", Image = "acca-bonus.png", Name = "prim-sto-paroli-3235"},
+                new Offer() { Title = "Acca Insurance*", Image = "acca-insurance.png", Name = "paroligo-322"},
+                new Offer() { Title = "Request a Bet*",  Image = "request-a-bet.png", Name = "pesto-ki-egine-1134" },
+                new Offer() { Title = "2 Goals Up*", Image = "2-goals-up.png", Name = "duo-kai-tameio-3884"},
+                new Offer() { Title = "Bore Draw Refund*", Image = "bore-draw-refund.png", Name = "leukh-epistrofi-9382" }
             };
         }
 

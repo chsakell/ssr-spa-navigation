@@ -76,7 +76,7 @@ const store = new Vuex.Store({
         SET_SIDEBAR_VISIBLE: (state, visible) => {
             state.displaySidebar = visible;
         },
-        SET_LIVE_STOIXIMA: (state, liveStoixima) => {
+        SET_LIVE_BET: (state, liveStoixima) => {
             state.live = liveStoixima;
         }
     },
@@ -89,7 +89,7 @@ const store = new Vuex.Store({
         getHeader: state => state.header,
         getFooter: state => state.footer,
         getLeague: state => state.league,
-        getLiveStoixima: state => state.live
+        getLiveBet: state => state.live
     }
 });
 
@@ -146,10 +146,10 @@ const homeComponent = Vue.component('home', {
             count: 0
         }
     },
-    template: "<div style='float:left;width:80%;margin: 10px 0;'><img src='/images/home.png' style='display:inline-block;width:100%' /></div>",
+    template: "<div style='float:left;width:80%;margin: 10px 0;'><img src='/images/home.png' style='display:inline-block;width:auto' /></div>",
     created() {
         this.$store.commit('SET_SIDEBAR_VISIBLE', true);
-        document.title = "Στοίχημα με Stoiximan | Νόμιμο και ασφαλές Online Stoixima";
+        document.title = "Legal and safe online betting";
 
         var uri = '/api/';
         
@@ -183,14 +183,14 @@ const offerComponent = Vue.component('offers', {
     template: "<div style='float:left;width:80%;margin-bottom: 10px;background:white;margin-top:10px'>" +
                 "<div v-for='offer in offers'>" +
                     "<div style='width: 50%;float: left;position:relative;text-align:center;margin:10px 0px'>" +
-                        "<img v-bind:src='offer.image' v-on:click='goTo(offer.name)' style='cursor:pointer'/>" +
-                    "<div style='position: absolute;bottom: 0; background: #185AA2;width: 334px; left:61px; font-size: 18px; color: white; text-align: center;'> {{ offer.title }}</div>" +
+                        "<img v-bind:src='offerImage(offer.image)' v-on:click='goTo(offer.name)' style='cursor:pointer;height:208px;width:333px'/>" +
+                    "<div style='position: absolute;bottom: 0; background: #185AA2;width: 333px; left:61px; font-size: 18px; color: white; text-align: center;'> {{ offer.title }}</div>" +
                     "</div> " +
                 "</div> " +
             "</div>",
     created() {
         this.$store.commit('SET_SIDEBAR_VISIBLE', true);
-        document.title = "Προσφορές | Stoiximan.gr";
+        document.title = "Offers | Sports betting";
         if (!this.$store.state.ignoreFirstOffersCall) {
             var uri = '/api/offers';
 
@@ -213,6 +213,9 @@ const offerComponent = Vue.component('offers', {
         goTo: function (article) {
             console.log(article);
             this.$router.push({ path: '/offers/' + article, params: { id: article }})
+        },
+        offerImage: function(image) {
+            return '/images/' + image;
         }
     }
 })
@@ -261,7 +264,7 @@ const articleComponent = Vue.component('offer-article', {
                   '<h4>ID: {{article.id}}</h4>' +
                   '<div style="padding: 20px 0;">{{article.content}}</div>' +
                     "<div style='width:100%'>" +
-                        "<img v-if='betofday' v-bind:src='betofday' style='width:100%' />" +
+                        "<img v-if='betofday' v-bind:src='betofday' style='width:auto' />" +
                     "</div>" +
               '</div>',
     computed: {
@@ -299,15 +302,15 @@ const articleComponent = Vue.component('offer-article', {
 
 const leagueComponent = Vue.component('league', {
     template: "<div style='float:left; margin-top: 10px;'>" +
-                "<div style='margin-bottom:10px'><img v-bind:src='liveStoiximaImage' style='width: 912px;'/></div>" +
-                "<div style='float:left;width:100%;margin-bottom: 10px;'><img v-bind:src='leagueImage' style='width: 912px;'/></div>" +
+                "<div style='margin-bottom:10px'><img v-bind:src='liveBetImage' style='width: auto;'/></div>" +
+                "<div style='float:left;width:100%;margin-bottom: 10px;'><img v-bind:src='leagueImage' style='width: auto;'/></div>" +
                 "</div>",
     computed: {
         leagueImage() {
             return '/images/' + this.$store.getters.getLeague.image
         },
-        liveStoiximaImage() {
-            return '/images/' + this.$store.getters.getLiveStoixima
+        liveBetImage() {
+            return '/images/' + this.$store.getters.getLiveBet
         }
     },
     created() {
@@ -325,8 +328,8 @@ const RouteStructureConfigs = {
         { title: 'header', alias: 'h', getter: 'getHeader', commits: [ { property: 'footer', mutation: 'SET_HEADER' }] },
         { title: 'footer', alias: 'f', getter: 'getFooter', commits: [ { property: 'footer', mutation: 'SET_FOOTER' }]}
     ],
-    liveStoiximaStructure: [
-        { title: 'live', alias: 'l', getter: 'getLiveStoixima', commits: [{ property: 'live', mutation: 'SET_LIVE_STOIXIMA' }] }
+    liveBetStructure: [
+        { title: 'live', alias: 'l', getter: 'getLiveBet', commits: [{ property: 'live', mutation: 'SET_LIVE_BET' }] }
     ]
 }
 
@@ -355,7 +358,7 @@ const router = new VueRouter({
             name: 'league', path: '/league/:sport/:id', component: leagueComponent,
             meta:
             {
-                requiredStructures: [...RouteStructureConfigs.defaultStructure, ...RouteStructureConfigs.liveStoiximaStructure]
+                requiredStructures: [...RouteStructureConfigs.defaultStructure, ...RouteStructureConfigs.liveBetStructure]
             }
         }
     ]
