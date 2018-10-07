@@ -76,8 +76,8 @@ const store = new Vuex.Store({
         SET_SIDEBAR_VISIBLE: (state, visible) => {
             state.displaySidebar = visible;
         },
-        SET_LIVE_BET: (state, liveStoixima) => {
-            state.live = liveStoixima;
+        SET_LIVE_BET: (state, liveBet) => {
+            state.live = liveBet;
         }
     },
     getters: {

@@ -165,17 +165,17 @@ namespace ssr_spa_navigation.Infrastructure
         }
     }
 
-    public class LiveStoiximaStructureResult : StructureResult
+    public class LiveBetStructureResult : StructureResult
     {
 
-        public LiveStoiximaStructureResult(IContentRepository contentRepository) : base(contentRepository)
+        public LiveBetStructureResult(IContentRepository contentRepository) : base(contentRepository)
         {
-            StuctureRequirement liveStoiximaRequirement = new StuctureRequirement();
-            liveStoiximaRequirement.StoreProperty = "live";
-            liveStoiximaRequirement.Alias = "l";
-            liveStoiximaRequirement.function = (x) => contentRepository.GetLiveBet();
+            StuctureRequirement liveBetRequirement = new StuctureRequirement();
+            liveBetRequirement.StoreProperty = "live";
+            liveBetRequirement.Alias = "l";
+            liveBetRequirement.function = (x) => contentRepository.GetLiveBet();
 
-            AddStructureRequirement(liveStoiximaRequirement);
+            AddStructureRequirement(liveBetRequirement);
         }
 
     }

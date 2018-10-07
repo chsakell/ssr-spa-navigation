@@ -37,7 +37,7 @@ namespace ssr_spa_navigation
             services.AddScoped<IContentRepository, ContentRepository>();
             services.AddScoped<DefaultStructureResult>();
             services.AddScoped<NoSidebarStructureResult>();
-            services.AddScoped<LiveStoiximaStructureResult>();
+            services.AddScoped<LiveBetStructureResult>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

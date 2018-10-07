@@ -16,7 +16,7 @@ namespace ssr_spa_navigation.Controllers
             _contentRepository = contentRepository;
         }
 
-        [ServiceFilter(typeof(LiveStoiximaStructureResult))]
+        [ServiceFilter(typeof(LiveBetStructureResult))]
         [ServiceFilter(typeof(DefaultStructureResult))]
         public IActionResult Details(string sport, int id)
         {
