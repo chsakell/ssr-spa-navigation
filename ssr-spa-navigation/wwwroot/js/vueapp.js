@@ -325,7 +325,7 @@ const RouteStructureConfigs = {
         { title: 'sidebar', alias: 's', getter: 'getSports', commits: [ { property: 'sidebar', mutation: 'SET_SIDEBAR' }]}
     ],
     noSidebarStructure : [
-        { title: 'header', alias: 'h', getter: 'getHeader', commits: [ { property: 'footer', mutation: 'SET_HEADER' }] },
+        { title: 'header', alias: 'h', getter: 'getHeader', commits: [ { property: 'header', mutation: 'SET_HEADER' }] },
         { title: 'footer', alias: 'f', getter: 'getFooter', commits: [ { property: 'footer', mutation: 'SET_FOOTER' }]}
     ],
     liveBetStructure: [

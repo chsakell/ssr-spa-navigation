@@ -51,9 +51,7 @@ namespace ssr_spa_navigation.Infrastructure.Repositories
                 new Offer() { Title = "0% Margin*", Image = "zero-margin.png", Name = "0-ganiota-1234"},
                 new Offer() { Title = "Acca Bonus*", Image = "acca-bonus.png", Name = "prim-sto-paroli-3235"},
                 new Offer() { Title = "Acca Insurance*", Image = "acca-insurance.png", Name = "paroligo-322"},
-                new Offer() { Title = "Request a Bet*",  Image = "request-a-bet.png", Name = "pesto-ki-egine-1134" },
-                new Offer() { Title = "2 Goals Up*", Image = "2-goals-up.png", Name = "duo-kai-tameio-3884"},
-                new Offer() { Title = "Bore Draw Refund*", Image = "bore-draw-refund.png", Name = "leukh-epistrofi-9382" }
+                new Offer() { Title = "Request a Bet*",  Image = "request-a-bet.png", Name = "pesto-ki-egine-1134" }
             };
         }
 
